@@ -1,4 +1,5 @@
-module.exports = function check(str, bracketsConfig) {
+module.exports = function check(str, bracketsConfig){
+
 	let brackets = bracketsConfig.join("").replace(/,/g,'');
 	let index=0;
 	let stack=[];
@@ -7,7 +8,14 @@ module.exports = function check(str, bracketsConfig) {
 
 		index=brackets.indexOf(str[i]);
 
-        if(index%2==0){
+		if (stack.length > 0          
+			&& (index % 2 == 0)               
+			&& (brackets[index + 1] == str[i])){ 
+		 stack.pop();                   
+		 continue;
+	 }
+		
+		if(index%2==0){
 			stack.push(index);
 		}
 		else {
@@ -23,5 +31,5 @@ module.exports = function check(str, bracketsConfig) {
 	if(stack.length!==0){
 		return false;
 	}
-	return stack.length==0;
+    return stack.length==0;
 }
