@@ -8,9 +8,7 @@ module.exports = function check(str, bracketsConfig){
 
 		index=brackets.indexOf(str[i]);
 
-		if (stack.length > 0          
-			&& (index % 2 == 0)               
-			&& (brackets[index + 1] == str[i])){ 
+		if (stack.length > 0 && (index % 2 == 0) && (brackets[index + 1] == str[i]) && stack[stack.length-1]==index){ 
 		 stack.pop();                   
 		 continue;
 	 }
@@ -31,5 +29,5 @@ module.exports = function check(str, bracketsConfig){
 	if(stack.length!==0){
 		return false;
 	}
-    return stack.length==0;
+    return true;
 }
